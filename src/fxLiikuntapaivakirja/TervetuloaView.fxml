@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Tiedosto">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleDefaultOK" text="Tallenna" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleDefaultCancel" text="Lopeta" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Muokkaa">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Lisää profiili" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Apua">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Tietoja" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <BorderPane BorderPane.alignment="CENTER">
+         <left>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="53.0" prefWidth="176.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleDefaultCancel" text="Sulje" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </left>
+         <right>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleDefaultOK" text="Aloita" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </right>
+         <center>
+            <TextField alignment="TOP_CENTER" editable="false" prefHeight="26.0" prefWidth="209.0" text="liikuntapaivakirja" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </bottom>
+   <center>
+      <Pane BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="236.0" layoutY="103.0" text="Tervetuloa!" />
+            <Label layoutX="216.0" layoutY="34.0" text="Liikuntapäiväkirja" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

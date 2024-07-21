@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import fi.jyu.mit.fxgui.ComboBoxChooser?>
+<?import fi.jyu.mit.fxgui.ListChooser?>
+<?import fi.jyu.mit.fxgui.StringGrid?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxLiikuntapaivakirja.LiikuntapaivakirjaGUIController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Tiedosto">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleTallenna" text="Tallenna">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#handleLopeta" text="Lopeta">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Muokka">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleUusiProfiili" text="Lisää profiili">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#handleMuokkaaProfiili" text="Muokkaa profiili" />
+                  <MenuItem mnemonicParsing="false" onAction="#handlePoistaKayttaja" text="Poista profiili" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleUusiSuoritus" text="Lisää suoritus" />
+                  <MenuItem mnemonicParsing="false" onAction="#handlePoistaSuoritus" text="Poista suoritus" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Apua">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleTietoja" text="Tietoja" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleApua" text="Apua" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.2640901771336554, 0.644122383252818" BorderPane.alignment="CENTER">
+         <items>
+            <BorderPane maxWidth="160.0" minWidth="100.0" prefWidth="138.0">
+               <center>
+                  <ListChooser fx:id="chooserKayttajat" maxWidth="200.0" prefHeight="200.0" prefWidth="170.0" rivit="&#10;&#10;" BorderPane.alignment="CENTER" />
+               </center>
+               <top>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="labelVirhe" alignment="CENTER" maxWidth="300.0" text="Hakuehto" />
+                        <ComboBoxChooser fx:id="cbKentat" maxWidth="300.0" onAction="#handleHakuehto" rivit="nimi&#10;ikä&#10;pituus&#10;paino&#10;tavoitteet&#10;" />
+                        <TextField fx:id="hakuehto" onKeyReleased="#handleHakuehto" />
+                        <Label alignment="CENTER" maxWidth="300.0" text="Profiilit" />
+                     </children>
+                  </VBox>
+               </top>
+            </BorderPane>
+            <BorderPane>
+               <top>
+                  <Label text="Profiili" BorderPane.alignment="CENTER" />
+               </top>
+               <center>
+                  <ScrollPane fx:id="panelKayttaja" fitToWidth="true" BorderPane.alignment="CENTER">
+                     <content>
+                        <GridPane hgap="10.0" vgap="10.0">
+                          <columnConstraints>
+                            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" minWidth="10.0" />
+                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="nimi" GridPane.hgrow="ALWAYS" />
+                              <TextField fx:id="editNimi" editable="false" onMouseClicked="#handleMuokkaaProfiili" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                              <Label text="ikä" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                              <Label text="pituus" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+                              <Label text="paino" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+                              <Label text="tavoitteet" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+                              <TextField fx:id="editIka" editable="false" onMouseClicked="#handleMuokkaaProfiili" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                              <TextField fx:id="editPituus" editable="false" onMouseClicked="#handleMuokkaaProfiili" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+                              <TextField fx:id="editPaino" editable="false" onMouseClicked="#handleMuokkaaProfiili" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+                              <TextField fx:id="editTavoitteet" editable="false" onMouseClicked="#handleMuokkaaProfiili" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </center>
+               <bottom>
+                  <Button mnemonicParsing="false" onAction="#handleTilastot" text="Tilastot" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+               </bottom>
+            </BorderPane>
+            <BorderPane>
+               <top>
+                  <Label text="Suoritukset" BorderPane.alignment="CENTER" />
+               </top>
+               <center>
+                  <StringGrid fx:id="tableSuoritukset" rivit="laji | kesto | pvm" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </items>
+      </SplitPane>
+   </center>
+   <bottom>
+      <BorderPane BorderPane.alignment="CENTER">
+         <left>
+            <HBox spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button onAction="#handleUusiProfiili" text="_Lisää profiili">
+                     <tooltip>
+                        <Tooltip text="Lisää uusi profiili" />
+                     </tooltip>
+                  </Button>
+                  <Button onAction="#handleTallenna" text="_Tallenna">
+                     <tooltip>
+                        <Tooltip text="Tallenna muutokset" />
+                     </tooltip>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </left>
+         <right>
+            <HBox spacing="10.0" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Button onAction="#handlePoistaSuoritus" text="_Poista suoritus">
+                     <tooltip>
+                        <Tooltip text="Poista lisätty suoritus" />
+                     </tooltip>
+                  </Button>
+                  <Button onAction="#handleUusiSuoritus" text="_Uusi suoritus">
+                     <tooltip>
+                        <Tooltip text="Lisää uusi suoritus" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </HBox>
+         </right>
+      </BorderPane>
+   </bottom>
+</BorderPane>
